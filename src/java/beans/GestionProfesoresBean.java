@@ -51,9 +51,9 @@ public class GestionProfesoresBean implements Serializable {
         edit = false;
     }
 
-    public void delete(Alumno alumno) {
-        alumno.eliminar();
-        list.remove(alumno);
+    public void delete(Profesor profesor) {
+        profesor.eliminar();
+        list.remove(profesor);
     }
 
     public List<Profesor> getList() {

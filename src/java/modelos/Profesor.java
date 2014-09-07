@@ -37,7 +37,7 @@ public class Profesor {
 		this.nombreProfesor=nombreProfesor;
 	}
 	public Profesor() {
-		// TODO Auto-generated constructor stub	
+            usuario=new Usuario(0,"blah");
 	}
 	
 	public boolean agregar(){
