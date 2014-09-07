@@ -36,6 +36,8 @@ public class Alumno {
 
 	public Alumno() {
 		// TODO Auto-generated constructor stub
+            usuario=new Usuario(0,"blah");
+            profesor=new Profesor(0,"blah");
 	}
 	
 	public boolean agregar(){
@@ -43,7 +45,7 @@ public class Alumno {
 		return Conexion.getInstancia().ejecutarSentencia("INSERT INTO alumno(idUsuario, idProfesor, nombreAlumno, apellidoAlumno, telefono1, telefono2, descripcion, foto, sexo) VALUES ("+usuario.getIdUsuario()+", "+profesor.getIdProfesor()+", '"+nombreAlumno+"','"+apellidoAlumno+"','"+telefono1+"','"+telefono2+"','"+descripcion+"','"+foto+"','"+sexo+"')");
 	}
 	
-	public int agregarYObtenerID(){
+	public int agregarConRetorno(){
 		System.out.println("INSERT INTO alumno(idUsuario, idProfesor, nombreAlumno, apellidoAlumno, telefono1, telefono2, descripcion, foto, sexo) VALUES ("+usuario.getIdUsuario()+", "+profesor.getIdProfesor()+", '"+nombreAlumno+"','"+apellidoAlumno+"','"+telefono1+"','"+telefono2+"','"+descripcion+"','"+foto+"','"+sexo+"')");
 		return Conexion.getInstancia().ejecutarSentenciaConRetorno("INSERT INTO alumno(idUsuario, idProfesor, nombreAlumno, apellidoAlumno, telefono1, telefono2, descripcion, foto, sexo) VALUES ("+usuario.getIdUsuario()+", "+profesor.getIdProfesor()+", '"+nombreAlumno+"','"+apellidoAlumno+"','"+telefono1+"','"+telefono2+"','"+descripcion+"','"+foto+"','"+sexo+"')");
 	}
@@ -59,7 +61,7 @@ public class Alumno {
 	}
 	//obtener todos los elementos de una base de datos
 	
-	// Métodos sets y gets para los atributos
+	// Mï¿½todos sets y gets para los atributos
 	
 	public int getIdAlumno() {
 		return idAlumno;

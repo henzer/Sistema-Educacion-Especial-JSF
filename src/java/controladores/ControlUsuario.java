@@ -71,8 +71,7 @@ public class ControlUsuario {
 			while (rs.next()) {
 				System.out.println(rs.getFetchSize());
 			    usuario = new Usuario();
-			    /*Retrieve one employee details
-			    and store it in employee object*/
+			    
 			    usuario.setIdUsuario(rs.getInt("idUsuario"));
 			    usuario.setNombreUsuario(rs.getString("nombreUsuario"));
 			    usuario.setPassword(rs.getString("password"));

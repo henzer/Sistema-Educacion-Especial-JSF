@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Gestion de Usuarios</title>
+    </h:head>
+    <h:body>
+        <h3>Usuarios</h3>
+        <h:form rendered="#{not empty gestionu.list}">
+            <h:dataTable value="#{gestionu.list}" var="usuario">
+                <h:column><f:facet name="header">ID usuario</f:facet>#{usuario.idUsuario}</h:column>
+                <h:column><f:facet name="header">Nombre</f:facet>#{usuario.nombreUsuario}</h:column>
+                <h:column><f:facet name="header">Tipo</f:facet>#{usuario.tipo}</h:column>
+                <h:column><f:facet name="header">Estado</f:facet>#{usuario.estado}</h:column>
+                <h:column><h:commandButton value="edit" action="#{gestionu.edit(usuario)}" /></h:column>
+                <h:column><h:commandButton value="delete" action="#{gestionu.delete(usuario)}" /></h:column>
+            </h:dataTable>
+        </h:form>
+        <h:panelGroup rendered="#{empty gestionu.list}">
+            <p>Table is empty! Please add new items.</p>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{!gestionu.edit}">
+            <h3>Add item</h3>
+            <h:form>
+                <p>Nombre: <h:inputText value="#{gestionu.usuario.nombreUsuario}" /></p>
+                <p>Contrasenha: <h:inputText value="#{gestionu.usuario.password}" /></p>
+                <p>Tipo: <h:inputText value="#{gestionu.usuario.tipo}" /></p>
+                <p>Estado: <h:inputText value="#{gestionu.usuario.estado}" /></p>
+                <p><h:commandButton value="add" action="#{gestionu.add}" /></p>
+            </h:form>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{gestionu.edit}">
+            <h3>Edit Usuario id =  #{gestionu.usuario.idUsuario}</h3>
+            <h:form>
+                <p>Nombre: <h:inputText value="#{gestionu.usuario.nombreUsuario}" /></p>
+                <p>Contrasenha: <h:inputText value="#{gestionu.usuario.password}" /></p>
+                <p>Tipo: <h:inputText value="#{gestionu.usuario.tipo}" /></p>
+                <p>Estado: <h:inputText value="#{gestionu.usuario.estado}" /></p>
+                <p><h:commandButton value="save" action="#{gestionu.save}" /></p>
+            </h:form>
+        </h:panelGroup>
+    </h:body>
+</html>

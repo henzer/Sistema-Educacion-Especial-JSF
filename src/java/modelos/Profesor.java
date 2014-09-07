@@ -43,7 +43,7 @@ public class Profesor {
 	public boolean agregar(){
 		return Conexion.getInstancia().ejecutarSentencia("INSERT INTO `profesor`(`nombreProfesor`, `apellidoProfesor`, `telefono1`, `telefono2`, `descripcion`, `foto`, `sexo`, `idUsuario`) VALUES ('"+nombreProfesor+"','"+apellidoProfesor+"','"+telefono1+"','"+telefono2+"','"+descripcion+"','"+foto+"','"+sexo+"',"+usuario.getIdUsuario()+")");
 	}
-	public int agregarYObtenerID(){
+	public int agregarConRetorno(){
 		return Conexion.getInstancia().ejecutarSentenciaConRetorno("INSERT INTO `profesor`(`nombreProfesor`, `apellidoProfesor`, `telefono1`, `telefono2`, `descripcion`, `foto`, `sexo`, `idUsuario`) VALUES ('"+nombreProfesor+"','"+apellidoProfesor+"','"+telefono1+"','"+telefono2+"','"+descripcion+"','"+foto+"','"+sexo+"',"+usuario.getIdUsuario()+")");
 	}
 	public boolean eliminar(){
@@ -56,7 +56,7 @@ public class Profesor {
 						+ "foto='"+this.getFoto()+"',sexo='"+this.getSexo()+"',idUsuario="+this.getUsuario().getIdUsuario()+" WHERE idProfesor =" + this.getIdProfesor());
 	}
 
-	// Métodos sets y gets para los atributos
+	// Mï¿½todos sets y gets para los atributos
 	
 	public int getIdProfesor() {
 		return idProfesor;

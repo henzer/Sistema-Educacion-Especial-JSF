@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Gestion de Alumnos</title>
+    </h:head>
+    <h:body>
+        <h3>Alumnos</h3>
+        <h:form rendered="#{not empty gestiona.list}">
+            <h:dataTable value="#{gestiona.list}" var="alumno">
+                <h:column><f:facet name="header">ID Alumno</f:facet>#{alumno.idAlumno}</h:column>
+                <h:column><f:facet name="header">Nombre</f:facet>#{alumno.nombreAlumno}</h:column>
+                <h:column><f:facet name="header">Apellido</f:facet>#{alumno.apellidoAlumno}</h:column>
+                <h:column><f:facet name="header">Telefono 1</f:facet>#{alumno.telefono1}</h:column>
+                <h:column><f:facet name="header">Telefono 2</f:facet>#{alumno.telefono2}</h:column>
+                <h:column><f:facet name="header">Descripcion</f:facet>#{alumno.descripcion}</h:column>
+                <h:column><f:facet name="header">Foto</f:facet>#{alumno.foto}</h:column>
+                <h:column><f:facet name="header">Sexo</f:facet>#{alumno.sexo}</h:column>
+                <h:column><f:facet name="header">ID Usuario</f:facet>#{alumno.usuario.idUsuario}</h:column>
+                <h:column><f:facet name="header">ID Profesor</f:facet>#{alumno.profesor.idProfesor}</h:column>
+                <h:column><h:commandButton value="editar" action="#{gestiona.edit(alumno)}" /></h:column>
+                <h:column><h:commandButton value="borrar" action="#{gestiona.delete(alumno)}" /></h:column>
+            </h:dataTable>
+        </h:form>
+        <h:panelGroup rendered="#{empty gestiona.list}">
+            <p>¡Tabla vacia! ¡Por agregar a la tabla presione el boton agregar.</p>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{!gestiona.edit}">
+            <h3>Agregar Alumno</h3>
+            <h:form>
+                <p>Nombre: <h:inputText value="#{gestiona.alumno.nombreAlumno}" /></p>
+                <p>Apelldio: <h:inputText value="#{gestiona.alumno.apellidoAlumno}" /></p>
+                <p>Telefono1: <h:inputText value="#{gestiona.alumno.telefono1}" /></p>
+                <p>Telefono2: <h:inputText value="#{gestiona.alumno.telefono2}" /></p>
+                <p>Descripcion: <h:inputText value="#{gestiona.alumno.descripcion}" /></p>
+                <p>Foto: <h:inputText value="#{gestiona.alumno.foto}" /></p>
+                <p>Sexo: <h:inputText value="#{gestiona.alumno.sexo}" /></p>
+                <p>ID Usuario: <h:inputText value="#{gestiona.alumno.usuario.idUsuario}" /></p>
+                <p>ID Profesor: <h:inputText value="#{gestiona.alumno.profesor.idProfesor}" /></p>
+                <p><h:commandButton value="Agregar" action="#{gestiona.add}" /></p>
+            </h:form>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{gestiona.edit}">
+            <h3>Edit Alumno id =  #{gestionu.usuario.idUsuario}</h3>
+            <h:form>
+                <p>Nombre: <h:inputText value="#{gestiona.alumno.nombreAlumno}" /></p>
+                <p>Apelldio: <h:inputText value="#{gestiona.alumno.apellidoAlumno}" /></p>
+                <p>Telefono1: <h:inputText value="#{gestiona.alumno.telefono1}" /></p>
+                <p>Telefono2: <h:inputText value="#{gestiona.alumno.telefono2}" /></p>
+                <p>Descripcion: <h:inputText value="#{gestiona.alumno.descripcion}" /></p>
+                <p>Foto: <h:inputText value="#{gestiona.alumno.foto}" /></p>
+                <p>Sexo: <h:inputText value="#{gestiona.alumno.sexo}" /></p>
+                <p>ID Usuario: <h:inputText value="#{gestiona.alumno.usuario.idUsuario}" /></p>
+                <p>ID Profesor: <h:inputText value="#{gestiona.alumno.profesor.idProfesor}" /></p>
+                <p><h:commandButton value="Guardar" action="#{gestiona.save}" /></p>
+            </h:form>
+        </h:panelGroup>
+    </h:body>
+</html>
