@@ -1,35 +1,13 @@
 package controladores;
 
+import conexion.Conexion;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import conexion.Conexion;
-import modelos.Alumno;
 import modelos.Usuario;
 
-public class ControlUsuario {
-    private String nombreUsuario;
-    private String password;
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public boolean autenticar(){
-        return (autenticarUsuario(nombreUsuario, password)!=null);
-    }
+public class ControlUsuario implements Serializable{
 	public Usuario autenticarUsuario(String nombreUsuario, String password){
 		Usuario aux=new Usuario(0,nombreUsuario,password,"","");
 		if(aux.autenticarUsuario()){

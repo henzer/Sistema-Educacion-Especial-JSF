@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>#{usuarioActual.nombreUsuario}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:menubar>
+                <p:menuitem></p:menuitem>
+                <p:submenu label="Bienvenido: #{usuarioActual.nombreUsuario}" ></p:submenu>
+                <p:menuitem value="Quit" action="#{login.cerrarSesion()}" icon="ui-icon-close" style="margin-right:5px;" />
+            </p:menubar>
+            
+        </h:form>
+        
+        <div style="position: relative; float: left; width: 20%; height: 100%; margin-top: 20px; min-width: 200px;">
+            <p:panelGrid columns="2">
+                <f:facet name="header">
+                    <p:graphicImage value="images/#{profesorActual.foto}" style="width: 100%;"/>
+                </f:facet>
+
+                <h:outputText value="Nombre:" />
+                <h:outputText value="#{profesorActual.nombreProfesor}" />
+
+                <h:outputText value="Apellido:" />
+                <h:outputText value="#{profesorActual.apellidoProfesor}" />
+
+                <h:outputText value="Telefono:" />
+                <h:outputText value="#{profesorActual.telefono1}" />
+
+                <h:outputText value="Descripcion:" />
+                <h:outputText value="#{profesorActual.descripcion}" />
+            </p:panelGrid>
+        </div>
+        
+        <div style="position: relative; float: left; width: 80%; height: 100%;">
+            <iframe src="gestionProfesor.xhtml" style="height: 100%; width: 100%; border:none"/>
+        </div>
+    </h:body>
+</html>

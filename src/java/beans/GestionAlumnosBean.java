@@ -11,13 +11,14 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import modelos.Alumno;
 import modelos.Profesor;
 import modelos.Usuario;
 
 @ManagedBean(name = "gestiona")
-@ViewScoped
+@SessionScoped
 public class GestionAlumnosBean implements Serializable {
 
     private List<Alumno> list;

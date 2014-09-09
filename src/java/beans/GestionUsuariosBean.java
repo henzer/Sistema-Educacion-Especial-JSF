@@ -15,17 +15,19 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import modelos.Usuario;
 
 @ManagedBean(name = "gestionu")
-@ViewScoped
+@SessionScoped
 public class GestionUsuariosBean implements Serializable {
 
     private List<Usuario> list;
     private Usuario usuario = new Usuario();
     private boolean edit;
     private ControlUsuario controlU;
+    
     @PostConstruct
     public void init() {
         // list = dao.list();
