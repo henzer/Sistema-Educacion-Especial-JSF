@@ -1,5 +1,6 @@
 package beans;
 
+import controladores.ControlAlumno;
 import controladores.ControlProfesor;
 import controladores.ControlUsuario;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import modelos.Alumno;
 import modelos.Profesor;
 import modelos.Usuario;
 @ManagedBean (name = "login")
@@ -58,6 +60,14 @@ public class Login implements Serializable{
                 miSesion.setAttribute("profesorActual", p);
                 return "profesor.xhtml";
             }else{
+                ControlAlumno ctlAlumno = new ControlAlumno();
+                Alumno a = ctlAlumno.getAlumno(actual.getIdUsuario());
+                if(a==null){
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Peligro", "El usuario ingresado no es valido");
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                    return "index.xhtml";
+                }
+                miSesion.setAttribute("alumnoActual", a);
                 return "alumno.xhtml";
             }
         }else{
@@ -67,8 +77,5 @@ public class Login implements Serializable{
         }
         return "index.xhtml";
     }
-    public String cerrarSesion(){
-        ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
-        return "index.xhtml";
-    }
+    
 }

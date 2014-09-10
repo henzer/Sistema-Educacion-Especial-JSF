@@ -16,12 +16,42 @@ and open the template in the editor.
     <h:body>
         <h:form>
             <p:menubar>
-                <p:submenu label="Bienvenido: #{usuarioActual.nombreUsuario}"></p:submenu>
-                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" style="margin-right:5px;" />
+                <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}"></p:menuitem>
+                <p:menuitem value="Mostrar Progreso" icon="ui-icon-note"></p:menuitem>
+                
+                <f:facet name="options">
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+                
             </p:menubar>
             
         </h:form>
-        
+        <div style="padding-left: 20px; padding-right: 20px; padding-top: 20px;">
+            <div style="position: relative; float: left; width: 20%; height: 100%; min-width: 200px;">
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <p:graphicImage value="images/#{alumnoActual.foto}" style="width: 100%;"/>
+                    </f:facet>
+
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value="#{alumnoActual.nombreAlumno}" />
+
+                    <h:outputText value="Apellido:" />
+                    <h:outputText value="#{alumnoActual.apellidoAlumno}" />
+
+                    <h:outputText value="Telefono:" />
+                    <h:outputText value="#{alumnoActual.telefono1}" />
+
+                    <h:outputText value="Descripcion:" />
+                    <h:outputText value="#{alumnoActual.descripcion}" />
+                </p:panelGrid>
+            </div>
+
+            <div style="position: relative; float: left; width: 80%; height: 100%; background-color: blue">
+
+            </div>
+            
+        </div>
         
     </h:body>
 </html>

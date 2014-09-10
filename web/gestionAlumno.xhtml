@@ -9,55 +9,114 @@
         <title>Gestion de Alumnos</title>
     </h:head>
     <h:body>
-        <h3>Alumnos</h3>
-        <h:form rendered="#{not empty gestiona.list}">
-            <h:dataTable value="#{gestiona.list}" var="alumno">
-                <h:column><f:facet name="header">ID Alumno</f:facet>#{alumno.idAlumno}</h:column>
-                <h:column><f:facet name="header">Nombre</f:facet>#{alumno.nombreAlumno}</h:column>
-                <h:column><f:facet name="header">Apellido</f:facet>#{alumno.apellidoAlumno}</h:column>
-                <h:column><f:facet name="header">Telefono 1</f:facet>#{alumno.telefono1}</h:column>
-                <h:column><f:facet name="header">Telefono 2</f:facet>#{alumno.telefono2}</h:column>
-                <h:column><f:facet name="header">Descripcion</f:facet>#{alumno.descripcion}</h:column>
-                <h:column><f:facet name="header">Foto</f:facet>#{alumno.foto}</h:column>
-                <h:column><f:facet name="header">Sexo</f:facet>#{alumno.sexo}</h:column>
-                <h:column><f:facet name="header">ID Usuario</f:facet>#{alumno.usuario.idUsuario}</h:column>
-                <h:column><f:facet name="header">ID Profesor</f:facet>#{alumno.profesor.idProfesor}</h:column>
-                <h:column><h:commandButton value="editar" action="#{gestiona.edit(alumno)}" /></h:column>
-                <h:column><h:commandButton value="borrar" action="#{gestiona.delete(alumno)}" /></h:column>
-            </h:dataTable>
+        <h:form>
+            <p:menubar>
+                <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}"></p:menuitem>
+                <p:menuitem value="Mostrar Progreso" icon="ui-icon-note"></p:menuitem>
+                
+                <f:facet name="options">
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+                
+            </p:menubar>
+            
         </h:form>
-        <h:panelGroup rendered="#{empty gestiona.list}">
-            <p>¡Tabla vacia! ¡Por agregar a la tabla presione el boton agregar.</p>
-        </h:panelGroup>
-        <h:panelGroup rendered="#{!gestiona.edit}">
-            <h3>Agregar Alumno</h3>
-            <h:form>
-                <p>Nombre: <h:inputText value="#{gestiona.alumno.nombreAlumno}" /></p>
-                <p>Apelldio: <h:inputText value="#{gestiona.alumno.apellidoAlumno}" /></p>
-                <p>Telefono1: <h:inputText value="#{gestiona.alumno.telefono1}" /></p>
-                <p>Telefono2: <h:inputText value="#{gestiona.alumno.telefono2}" /></p>
-                <p>Descripcion: <h:inputText value="#{gestiona.alumno.descripcion}" /></p>
-                <p>Foto: <h:inputText value="#{gestiona.alumno.foto}" /></p>
-                <p>Sexo: <h:inputText value="#{gestiona.alumno.sexo}" /></p>
-                <p>ID Usuario: <h:inputText value="#{gestiona.alumno.usuario.idUsuario}" /></p>
-                <p>ID Profesor: <h:inputText value="#{gestiona.alumno.profesor.idProfesor}" /></p>
-                <p><h:commandButton value="Agregar" action="#{gestiona.add}" /></p>
-            </h:form>
-        </h:panelGroup>
-        <h:panelGroup rendered="#{gestiona.edit}">
-            <h3>Edit Alumno id =  #{gestiona.alumno.idAlumno}</h3>
-            <h:form>
-                <p>Nombre: <h:inputText value="#{gestiona.alumno.nombreAlumno}" /></p>
-                <p>Apelldio: <h:inputText value="#{gestiona.alumno.apellidoAlumno}" /></p>
-                <p>Telefono1: <h:inputText value="#{gestiona.alumno.telefono1}" /></p>
-                <p>Telefono2: <h:inputText value="#{gestiona.alumno.telefono2}" /></p>
-                <p>Descripcion: <h:inputText value="#{gestiona.alumno.descripcion}" /></p>
-                <p>Foto: <h:inputText value="#{gestiona.alumno.foto}" /></p>
-                <p>Sexo: <h:inputText value="#{gestiona.alumno.sexo}" /></p>
-                <p>ID Usuario: <h:inputText value="#{gestiona.alumno.usuario.idUsuario}" /></p>
-                <p>ID Profesor: <h:inputText value="#{gestiona.alumno.profesor.idProfesor}" /></p>
-                <p><h:commandButton value="Guardar" action="#{gestiona.save}" /></p>
-            </h:form>
-        </h:panelGroup>
+        
+        <div style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
+            <div style="position: relative; float: left; width: 20%; height: 100%; min-width: 200px;">
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <p:graphicImage value="images/#{profesorActual.foto}" style="width: 100%;"/>
+                    </f:facet>
+
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value="#{profesorActual.nombreProfesor}" />
+
+                    <h:outputText value="Apellido:" />
+                    <h:outputText value="#{profesorActual.apellidoProfesor}" />
+
+                    <h:outputText value="Telefono:" />
+                    <h:outputText value="#{profesorActual.telefono1}" />
+
+                    <h:outputText value="Descripcion:" />
+                    <h:outputText value="#{profesorActual.descripcion}" />
+                </p:panelGrid>
+            </div>
+
+            <div style="position: relative; float: left; width: 60%; height: 100%; margin-left: 20px;">
+                <span>Alumnos</span>
+                <h:form id="formAlumnos">
+                    <p:growl id="mensajes" showDetail="true" />
+                    <p:dataTable value="#{gestiona.list}" var="alumno" id="tablaPrueba">
+                        <p:column headerText="ID"><h:outputText value="#{alumno.idAlumno}"/></p:column>
+                        <p:column headerText="Nombre"><h:outputText value="#{alumno.nombreAlumno}"/></p:column>
+                        <p:column headerText="Apellido"><h:outputText value="#{alumno.apellidoAlumno}"/></p:column>
+                        <p:column headerText="Telefono 1"><h:outputText value="#{alumno.telefono1}"/></p:column>
+                        <p:column headerText="Descripción"><h:outputText value="#{alumno.descripcion}"/></p:column>
+                        <p:column headerText="Sexo"><h:outputText value="#{alumno.sexo}"/></p:column>
+
+                        <p:column>
+                            <p:commandButton icon="ui-icon-pencil" actionListener="#{gestiona.edit(alumno)}" update=":formAlumnos:ventanaModalModificar"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-trash" actionListener="#{gestiona.delete(alumno)}" update="tablaPrueba :formAlumnos:mensajes"/>
+                        </p:column>
+                    </p:dataTable>
+
+
+                    <p:dialog id="ventanaModalModificar" header="Modificar Alumno" widgetVar="ventanaModalAlumno1" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="detalleAlumnoModificar" style="text-align:center;">
+                            <p:panelGrid  columns="2" rendered="#{not empty gestiona.alumno}" columnClasses="label,value">
+                                <h:outputText value="Nombre:" />
+                                <h:inputText value="#{gestiona.alumno.nombreAlumno}" />
+                                <h:outputText value="Apellido:" />
+                                <h:inputText value="#{gestiona.alumno.apellidoAlumno}" />
+                                <h:outputText value="Telefono 1:" />
+                                <h:inputText value="#{gestiona.alumno.telefono1}" />
+                                <h:outputText value="Telefono 2:" />
+                                <h:inputText value="#{gestiona.alumno.telefono2}" />
+                                <h:outputText value="Descripción" />
+                                <h:inputText value="#{gestiona.alumno.descripcion}" />
+                                <h:outputText value="Foto" />
+                                <h:inputText value="#{gestiona.alumno.foto}" />
+                                <h:outputText value="Sexo:" />
+                                <h:inputText value="#{gestiona.alumno.sexo}" />
+                                <h:outputText value="Usuario:" />
+                                <h:inputText value="#{gestiona.alumno.usuario.idUsuario}" />
+                                <p:commandButton value="Guardar" actionListener="#{gestiona.save}" update="tablaPrueba mensajes" />
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+
+                    <p:dialog id="ventanaModalAgregar" header="Nuevo Alumno" widgetVar="ventanaModalAlumno2" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="detalleAlumnoAgregar" style="text-align:center;">
+                            <p:panelGrid  columns="2" columnClasses="label,value" style="border:none;">
+                                <h:outputText value="Nombre:" />
+                                <h:inputText value="#{gestiona.nuevo.nombreAlumno}" />
+                                <h:outputText value="Apellido:" />
+                                <h:inputText value="#{gestiona.nuevo.apellidoAlumno}" />
+                                <h:outputText value="Telefono 1:" />
+                                <h:inputText value="#{gestiona.nuevo.telefono1}" />
+                                <h:outputText value="Telefono 2:" />
+                                <h:inputText value="#{gestiona.nuevo.telefono2}" />
+                                <h:outputText value="Descripción" />
+                                <h:inputText value="#{gestiona.nuevo.descripcion}" />
+                                <h:outputText value="Foto" />
+                                <h:inputText value="#{gestiona.nuevo.foto}" />
+                                <h:outputText value="Sexo:" />
+                                <h:inputText value="#{gestiona.nuevo.sexo}" />
+                                <h:outputText value="Usuario:" />
+                                <h:inputText value="#{gestiona.nuevo.usuario.idUsuario}" />
+                                <p:commandButton  value="Agregar" actionListener="#{gestiona.add}" update="tablaPrueba mensajes" />
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <h:form>
+                        <p:commandButton value="Agregar" actionListener="#{gestiona.mostrarVentanaModal()}" update=":formAlumnos:ventanaModalAgregar"/>
+                    </h:form>
+                </h:form>
+            </div>
+        </div>
+        
     </h:body>
 </html>
