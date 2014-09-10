@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <head>
+        <title>Probando imagen...</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    
+    <body>
+        <script type="text/javascript">
+            function handleDrop(event, ui) {
+                var droppedImage = ui.draggable;
+                droppedImage.fadeOut('fast');
+            }
+            
+            function findElement(id){
+                var contents = document.getElementById(id);
+                alert(contents);
+                
+            }
+        </script>
+        
+        
+        <h:panelGrid columns="2" rendered="true">
+            <h:form id="formImagenesL1" >
+                <p:dataGrid id="ImagenesL1" var="imagen" value="#{ejercicioAsociacion1.imagesName}" columns="1" style="border-color: red">
+                    <p:row>
+                        <p:graphicImage id="imagen" value="images/#{imagen}.png"/>
+                        <p:draggable for="imagen" revert="true" />
+                    </p:row>
+                </p:dataGrid>
+            </h:form>
+
+            <h:form id="formImagenesL2" style="width: 500px; background-color: blue">
+                <p:dataGrid id="ImagenesL2" columns="1" rows="5" var="imagen" value="#{ejercicioAsociacion1.droppedImages}">
+                    <p:row >
+                        <p:outputPanel id="dropArea">
+                            <p:graphicImage value="images/#{imagen}.png" style="height: 100px"/>
+                        </p:outputPanel>
+                        <p:droppable for="dropArea" tolerance="intersect" activeStyleClass="ui-state-highlight" datasource=":formImagenesL1:ImagenesL1" onDrop="handleDrop">
+                            <p:ajax listener="#{ejercicioAsociacion1.onImageDrop}" update=":formImagenesL1:ImagenesL1 ImagenesL2" />
+                        </p:droppable>
+                    </p:row>
+                </p:dataGrid>
+                
+            </h:form>            
+            
+            
+        </h:panelGrid>
+
+    </body>
+</html>
