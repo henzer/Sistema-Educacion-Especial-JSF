@@ -31,7 +31,7 @@ public class EjercicioAsociacion1 implements Serializable {
         imagesName = new ArrayList();
         droppedImages = new ArrayList();
         for (int i = 0; i < 5; i++) {
-            imagesName.add("logo"+String.valueOf(i));
+            imagesName.add("logo"+String.valueOf(i+1));
             droppedImages.add(null);
         }
     }
