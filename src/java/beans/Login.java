@@ -6,6 +6,7 @@ import controladores.ControlUsuario;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -55,27 +56,38 @@ public class Login implements Serializable{
                 if(p==null){
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Peligro", "El usuario ingresado no es valido");
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    return "index.xhtml";
+                    return "index";
                 }
                 miSesion.setAttribute("profesorActual", p);
-                return "profesor.xhtml";
+                return "profesor";
             }else{
                 ControlAlumno ctlAlumno = new ControlAlumno();
+                System.out.println("idUsuario: " + actual.getIdUsuario());
+                
                 Alumno a = ctlAlumno.getAlumno(actual.getIdUsuario());
+                System.out.println("Nombre: " + a.getNombreAlumno());
                 if(a==null){
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Peligro", "El usuario ingresado no es valido");
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    return "index.xhtml";
+                    return "index";
                 }
                 miSesion.setAttribute("alumnoActual", a);
-                return "alumno.xhtml";
+                return "alumno";
             }
         }else{
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incorrecto", "Credenciales incorrectas");
             FacesContext.getCurrentInstance().addMessage(null, message);
         
         }
-        return "index.xhtml";
+        return "index";
+    }
+    
+    public String cerrarSesion(){
+        System.out.println("Cerrar Sesion");
+        HttpSession miSesion = ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true));
+        System.out.println("Sesion: " + miSesion.isNew());
+        miSesion.invalidate();
+        return "index";
     }
     
 }

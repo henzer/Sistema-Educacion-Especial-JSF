@@ -3,48 +3,65 @@ package modelos;
 import java.util.ArrayList;
 
 public class Unidad {
-	
-	int idUnidad;
-	String nombreUnidad;
-	ArrayList<Leccion> lecciones;
+    private int idUnidad;
+    private String nombreUnidad;
+    private int limite;
 
-	
-	public Unidad(int idUnidad, String nombreUnidad,
-			ArrayList<Leccion> lecciones) {
-		super();
-		this.idUnidad = idUnidad;
-		this.nombreUnidad = nombreUnidad;
-		this.lecciones = lecciones;
-	}
+    private ArrayList<Leccion> lecciones;
+    
+    public Unidad() {
+        lecciones = new ArrayList();
+    }
 
-	public Unidad() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	/// Métodos sets y gets para los atributos
+    public Unidad(int idUnidad, String nombreUnidad, int limite) {
+        this.idUnidad = idUnidad;
+        this.nombreUnidad = nombreUnidad;
+        this.limite = limite;
+        this.lecciones = new ArrayList();
+    }
 
-	public int getIdUnidad() {
-		return idUnidad;
-	}
+    public int getIdUnidad() {
+        return idUnidad;
+    }
 
-	public void setIdUnidad(int idUnidad) {
-		this.idUnidad = idUnidad;
-	}
+    public void setIdUnidad(int idUnidad) {
+        this.idUnidad = idUnidad;
+    }
 
-	public String getNombreUnidad() {
-		return nombreUnidad;
-	}
+    public String getNombreUnidad() {
+        return nombreUnidad;
+    }
 
-	public void setNombreUnidad(String nombreUnidad) {
-		this.nombreUnidad = nombreUnidad;
-	}
+    public void setNombreUnidad(String nombreUnidad) {
+        this.nombreUnidad = nombreUnidad;
+    }
 
-	public ArrayList<Leccion> getLecciones() {
-		return lecciones;
-	}
+    public int getLimite() {
+        return limite;
+    }
 
-	public void setLecciones(ArrayList<Leccion> lecciones) {
-		this.lecciones = lecciones;
-	}
+    public void setLimite(int limite) {
+        this.limite = limite;
+    }
+
+    public ArrayList<Leccion> getLecciones() {
+        return lecciones;
+    }
+
+    public void addLeccion(Leccion nueva) {
+        this.lecciones.add(nueva);
+    }
+
+    public void setLecciones(ArrayList<Leccion> lecciones) {
+        this.lecciones = lecciones;
+    }
+
+    
+    
+    @Override
+    public String toString() {
+        return "Unidad{" + "idUnidad=" + idUnidad + ", nombreUnidad=" + nombreUnidad + '}';
+    }
+    
 	
 }
