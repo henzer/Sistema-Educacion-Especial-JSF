@@ -38,7 +38,7 @@ public class LeccionBean implements Serializable{
     }
     public void armarListas(String archivo){
         ExternalContext extContext=FacesContext.getCurrentInstance().getExternalContext();
-        try (BufferedReader br = new BufferedReader(new FileReader(extContext.getRealPath(dirLeccion+archivo+".txt")))){
+        try (BufferedReader br = new BufferedReader(new FileReader(extContext.getRealPath(dirLeccion + archivo + ".txt")))){
             String sCurrentLine;
             int array=0;
             while ((sCurrentLine = br.readLine()) != null) {
