@@ -12,15 +12,13 @@
         <h:form>
             <p:menubar>
                 <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}"></p:menuitem>
+                <p:menuitem value="Cerrar Sesion" icon="ui-icon-extlink" action="#{login.cerrarSesion()}"></p:menuitem>
                 <p:submenu label="Gestionar" icon="ui-icon-pencil">
                     <p:menuitem value="Gestionar Alumnos" icon="ui-icon-person"></p:menuitem>
                     <p:separator></p:separator>
                     <p:menuitem value="Gestionar Lecciones" icon="ui-icon-note"></p:menuitem>
                 </p:submenu>
                 
-                <f:facet name="options">
-                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
-                </f:facet>
                 
             </p:menubar>
             

@@ -18,15 +18,15 @@ and open the template in the editor.
         <h:form>
             <p:menubar>
                 <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}"></p:menuitem>
+                <p:separator></p:separator>
+                <p:menuitem value="Cerrar Sesion" icon="ui-icon-extlink" action="#{login.cerrarSesion()}"></p:menuitem>
+                <p:separator></p:separator>
                 <p:submenu label="Gestionar" icon="ui-icon-pencil">
                     <p:menuitem value="Gestionar Alumnos" icon="ui-icon-person" action="gestionAlumno.xhtml"></p:menuitem>
                     <p:separator></p:separator>
                     <p:menuitem value="Gestionar Lecciones" icon="ui-icon-note"></p:menuitem>
                 </p:submenu>
                 
-                <f:facet name="options">
-                    <p:commandButton type="button" value="Logout" action="#{ctrlProfesor.cerrarSesion()}" icon="ui-icon-extlink" />
-                </f:facet>
                 
             </p:menubar>
             

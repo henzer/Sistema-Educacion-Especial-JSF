@@ -19,6 +19,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import modelos.Leccion;
 import modelos.Unidad;
 
 @ManagedBean (name="ctrlAlumno")
@@ -43,6 +44,9 @@ public class ControlInterfazAlumno implements Serializable {
         this.lista = lista;
     }
     
+    public String irLeccion(Leccion leccion){
+        return "leccion?idLeccion=" + leccion.getIdLeccion() + "&nombreLeccion="+leccion.getNombreLeccion();
+    }
     
     public String cerrarSesion(){
         ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
