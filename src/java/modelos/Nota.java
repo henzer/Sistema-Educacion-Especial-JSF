@@ -7,7 +7,7 @@ public class Nota {
 	int idUnidad;
 	String fecha;
 	double nota;
-
+	
 	
 	public Nota(int idAlumno, int idLeccion, int idUnidad, String fecha,
 			double nota) {
@@ -23,7 +23,7 @@ public class Nota {
 		// TODO Auto-generated constructor stub
 	}
 
-	// Mï¿½todos sets y gets para los atributos
+	// Métodos sets y gets para los atributos
 	
 	public int getIdAlumno() {
 		return idAlumno;

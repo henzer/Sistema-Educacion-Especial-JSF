@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import conexion.Conexion;
+
 public class Alumno {
 
 	private int idAlumno;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import conexion.Conexion;
 
 public class Profesor {
-
+	
 	int idProfesor;
 	String nombreProfesor;
 	String apellidoProfesor;

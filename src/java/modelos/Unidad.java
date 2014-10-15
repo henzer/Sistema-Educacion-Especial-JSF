@@ -6,6 +6,7 @@ public class Unidad {
     private int idUnidad;
     private String nombreUnidad;
     private int limite;
+
     private ArrayList<Leccion> lecciones;
     
     public Unidad() {

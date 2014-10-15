@@ -9,7 +9,6 @@ import modelos.Profesor;
 import modelos.Usuario;
 import conexion.Conexion;
 
-
 public class ControlAlumno {
 	public ArrayList<Alumno> obtenerTodos(){
 		ResultSet rs= Conexion.getInstancia().hacerConsulta("SELECT * FROM alumno");

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import modelos.Unidad;
 
 public class ControlUnidad {
+    
     public ArrayList<Unidad> obtenerTodas(){
         ResultSet rs= Conexion.getInstancia().hacerConsulta("SELECT * FROM unidad");
         ArrayList<Unidad> resultado = new ArrayList();
