@@ -20,10 +20,7 @@ and open the template in the editor.
             <p:menubar>
                 <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}"></p:menuitem>
                 <p:menuitem value="Cerrar Sesion" icon="ui-icon-extlink" action="#{login.cerrarSesion()}"></p:menuitem>
-                <p:menuitem value="Mostrar Progreso" icon="ui-icon-note" ></p:menuitem>
-                
-                
-                
+                <p:menuitem value="Mostrar Progreso" icon="ui-icon-note" ></p:menuitem> 
             </p:menubar>
             
         </h:form>
@@ -53,7 +50,8 @@ and open the template in the editor.
                     <p:tab title="Unidad - #{unidad.nombreUnidad}">
                         <h:panelGrid columns="2" cellpadding="5">
                             <ui:repeat value="#{unidad.lecciones}" var="leccion">
-                                <p:commandButton value="#{leccion.nombreLeccion}" action="#{ctrlAlumno.irLeccion(leccion)}"></p:commandButton>
+                                <p:commandButton value="#{leccion.nombreLeccion}" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-star"></p:commandButton>
+                                <p:commandButton value="Actividades" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-star"></p:commandButton>
                             </ui:repeat>
                                                
                         </h:panelGrid>
