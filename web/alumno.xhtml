@@ -51,7 +51,8 @@ and open the template in the editor.
                         <h:panelGrid columns="2" cellpadding="5">
                             <ui:repeat value="#{unidad.lecciones}" var="leccion">
                                 <p:commandButton value="#{leccion.nombreLeccion}" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-star"></p:commandButton>
-                                <p:commandButton value="Actividades" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-star"></p:commandButton>
+                                <p:commandButton value="Actividades" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-pencil"></p:commandButton>
+                                <p:separator></p:separator>
                             </ui:repeat>
                                                
                         </h:panelGrid>

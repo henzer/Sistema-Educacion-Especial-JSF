@@ -45,7 +45,7 @@ public class ControlInterfazAlumno implements Serializable {
     }
     
     public String irLeccion(Leccion leccion){
-        return "leccion?idLeccion=" + leccion.getIdLeccion() + "&nombreLeccion="+leccion.getNombreLeccion()+"faces-redirect=true";
+        return "leccion?idLeccion=" + leccion.getIdLeccion() + "&nombreLeccion="+leccion.getNombreLeccion();
     }
     
     public String cerrarSesion(){
