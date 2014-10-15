@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelos.Leccion;
 
+
 public class ControlLeccion {
     public ArrayList<Leccion> obtenerTodas(int idUnidad){
         ResultSet rs= Conexion.getInstancia().hacerConsulta("select idLeccion, leccion.idUnidad, nombreUnidad, nombreLeccion, archivo from leccion inner join unidad on leccion.idUnidad = unidad.idUnidad where leccion.idUnidad = " + idUnidad);

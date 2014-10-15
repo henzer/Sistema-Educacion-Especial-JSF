@@ -1,5 +1,6 @@
 package beans;
 
+
 import controladores.ControlAlumno;
 import controladores.ControlProfesor;
 import controladores.ControlUsuario;

@@ -6,7 +6,6 @@ public class Leccion {
     private String nombreUnidad; 
     private String nombreLeccion;
     private String archivo;
-
     public Leccion() {
     }
 

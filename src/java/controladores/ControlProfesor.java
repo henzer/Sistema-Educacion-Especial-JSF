@@ -9,6 +9,7 @@ import modelos.Nota;
 import modelos.Profesor;
 import modelos.Usuario;
 
+
 public class ControlProfesor implements Serializable{
 
 	public boolean editarAlumno(int idAlumno, String nombreAlumno, String apellidoAlumno,

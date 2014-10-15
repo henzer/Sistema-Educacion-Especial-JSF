@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelos.Usuario;
-
 public class ControlUsuario implements Serializable{
 	public Usuario autenticarUsuario(String nombreUsuario, String password){
 		Usuario aux=new Usuario(0,nombreUsuario,password,"","");

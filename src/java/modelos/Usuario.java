@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import conexion.Conexion;
 
 public class Usuario {
-	
 	int idUsuario;
 	String nombreUsuario;
 	String password;
@@ -32,7 +31,7 @@ public class Usuario {
 		this.estado = estado;
 	}
 
-	/// Métodos sets y gets para los atributos
+	/// Mï¿½todos sets y gets para los atributos
 	
 	public int getIdUsuario() {
 		return idUsuario;
