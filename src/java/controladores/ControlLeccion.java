@@ -18,7 +18,9 @@ public class ControlLeccion {
             }
         }catch(SQLException e){
             e.printStackTrace();
-        }
+        }finally{
+                            Conexion.getInstancia().liberarConexion();
+                        }
         return resultado;
     }
 }

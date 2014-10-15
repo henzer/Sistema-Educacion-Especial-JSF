@@ -14,7 +14,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import modelos.Alumno;
+import modelos.Profesor;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean(name = "gestiona")
@@ -40,6 +42,9 @@ public class GestionAlumnosBean implements Serializable {
     }
     
     public void add() {
+        Profesor profesor = (Profesor)((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false)).getAttribute("profesorActual");
+        nuevo.setProfesor(profesor);
+        System.out.println(nuevo);
         int res=nuevo.agregarConRetorno();
         if (res !=0){
             nuevo.setIdAlumno(res);

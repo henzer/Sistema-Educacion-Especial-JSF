@@ -49,7 +49,7 @@ public class Login implements Serializable{
             HttpSession miSesion = ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true));
             miSesion.setAttribute("usuarioActual", actual);
             if(actual.getTipo().equals("1")){
-                return "administrador.xhtml";
+                return "administrador";
             }else if(actual.getTipo().equals("2")){
                 ControlProfesor ctlProfesor = new ControlProfesor();
                 Profesor p = ctlProfesor.getProfesor(actual.getIdUsuario());
@@ -84,8 +84,7 @@ public class Login implements Serializable{
     
     public String cerrarSesion(){
         System.out.println("Cerrar Sesion");
-        HttpSession miSesion = ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true));
-        System.out.println("Sesion: " + miSesion.isNew());
+        HttpSession miSesion = ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false));
         miSesion.invalidate();
         return "index";
     }

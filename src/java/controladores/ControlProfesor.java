@@ -30,7 +30,9 @@ public class ControlProfesor implements Serializable{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}finally{
+                            Conexion.getInstancia().liberarConexion();
+                        }
 		return lista;
 	}
         public Profesor getProfesor(int idUsuario){
@@ -41,7 +43,9 @@ public class ControlProfesor implements Serializable{
                 }
             } catch (SQLException e) {
                     e.printStackTrace();
-            }
+            }finally{
+                            Conexion.getInstancia().liberarConexion();
+                        }
             return null;
         }
         

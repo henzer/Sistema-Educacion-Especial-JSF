@@ -32,7 +32,7 @@ public class Usuario {
 		this.estado = estado;
 	}
 
-	/// Métodos sets y gets para los atributos
+	/// Mï¿½todos sets y gets para los atributos
 	
 	public int getIdUsuario() {
 		return idUsuario;
@@ -66,7 +66,6 @@ public class Usuario {
 	}
 	
 	public boolean autenticarUsuario(){
-		System.out.println("Llegue a la conexion");
 		if(this.nombreUsuario!=null && this.password!=null && this.nombreUsuario!="" && this.password!=""){
 			ResultSet lista = null;
 			try {
@@ -82,7 +81,9 @@ public class Usuario {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+                            Conexion.getInstancia().liberarConexion();
+                        }
 		}
 		return false;
 	}

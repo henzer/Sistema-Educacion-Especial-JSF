@@ -36,7 +36,9 @@ public class ControlAlumno {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-		}
+		}finally{
+                            Conexion.getInstancia().liberarConexion();
+                        }
 		System.out.println(resultado);
 		return resultado;
 	}
@@ -65,7 +67,9 @@ public class ControlAlumno {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-		}
+		}finally{
+                            Conexion.getInstancia().liberarConexion();
+                        }
                 return null;
 	}
 }

@@ -16,11 +16,16 @@ public class ControlUnidad {
         try{
             while(rs.next()){
                 unidad = new Unidad(rs.getInt("idUnidad"), rs.getString("nombreUnidad"), rs.getInt("limite"));
-                unidad.setLecciones(ctrlLeccion.obtenerTodas(unidad.getIdUnidad()));
+                
                 resultado.add(unidad);
             }
         }catch(SQLException e){
             e.printStackTrace();
+        }finally{
+            Conexion.getInstancia().liberarConexion();
+        }
+        for(Unidad u: resultado){
+            u.setLecciones(ctrlLeccion.obtenerTodas(u.getIdUnidad()));
         }
         return resultado;
     }

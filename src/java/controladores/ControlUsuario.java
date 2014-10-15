@@ -37,7 +37,9 @@ public class ControlUsuario implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("error");
-		}
+		}finally{
+                    Conexion.getInstancia().liberarConexion();
+                }
 		System.out.println(resultado);
 		return resultado;
 	}
@@ -62,7 +64,9 @@ public class ControlUsuario implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("error");
-		}
+		}finally{
+                    Conexion.getInstancia().liberarConexion();
+                }
 		System.out.println(resultado);
 		return resultado;
 	}

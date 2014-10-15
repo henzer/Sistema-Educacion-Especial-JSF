@@ -16,6 +16,7 @@ import org.apache.commons.dbcp.BasicDataSourceFactory;
 public class Conexion {
 	//Definicion de variables
     private DataSource dataSource;
+    private ResultSet resultado;
     private Statement enunciado;
     private Connection conexion;
     
@@ -65,6 +66,8 @@ public class Conexion {
             System.out.println("Error al ejecutar la sentencia: " + sentencia + "\n" + e.getStackTrace());
             System.out.println("Message:"+e.getMessage()+" Causa:"+e.getCause()+" SQLSlate:"+e.getSQLState());
             return false;
+        }finally{
+            liberarConexion();
         }
         return true;
     }
@@ -73,7 +76,7 @@ public class Conexion {
     // Realiza consultas a la base de datos 
     //******************************************************************
 	public ResultSet hacerConsulta(String consulta) {
-		ResultSet resultado = null;
+		resultado = null;
 		conexion = null;
 		try {
 			conexion = dataSource.getConnection();
@@ -104,7 +107,9 @@ public class Conexion {
 			e.printStackTrace();
 			System.out.println("Error al ejecutar la consulta: " + consulta);
 			System.out.println("Message:"+e.getMessage()+" Causa:"+e.getCause()+" SQLSlate:"+e.getSQLState());
-		}
+		}finally{
+                    liberarConexion();
+                }
 		return id;
 	}
 	
@@ -121,6 +126,23 @@ public class Conexion {
     public void liberaConexion(Connection conexion) {
         try {
             if (null != conexion) {
+                conexion.close();
+            }
+        } catch (SQLException e) {
+        	System.out.println("ERROR. - Al liberar la conexion\nMas informacion:\n");
+        	System.out.println(e.getMessage());
+        	e.printStackTrace();
+        }
+    }
+    
+        //******************************************************************
+    // Libera pool de conexion para nuevos usos
+    //******************************************************************
+    public void liberarConexion() {
+        try {
+            if (null != conexion) {
+                resultado.close();
+                enunciado.close();
                 conexion.close();
             }
         } catch (SQLException e) {
