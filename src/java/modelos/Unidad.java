@@ -56,8 +56,6 @@ public class Unidad {
         this.lecciones = lecciones;
     }
 
-    
-    
     @Override
     public String toString() {
         return "Unidad{" + "idUnidad=" + idUnidad + ", nombreUnidad=" + nombreUnidad + '}';

@@ -29,12 +29,14 @@ public class LeccionBean implements Serializable{
     private List<String> nombres;
     private List<String> imagenes;
     private List<String> sonidos;
+    private boolean encurso;
     @PostConstruct
     public void init(){
         tabs=new ArrayList<Contenido>();
         nombres=new ArrayList<String>();
         imagenes=new ArrayList<String>();
         sonidos=new ArrayList<String>();
+        encurso=true;
     }
     public void armarListas(String archivo){
         ExternalContext extContext=FacesContext.getCurrentInstance().getExternalContext();
@@ -80,10 +82,29 @@ public class LeccionBean implements Serializable{
         armarListas(archivo);
         return tabs;
     }
-    
+    public void checkFalse(Contenido tab){
+        int index=tabs.indexOf(tab);
+        if(index==tabs.size()-1){
+            encurso=false;
+            System.out.println("se desactivo");
+        }
+        else{
+            System.out.println("se activo");
+        }
+    }
 
     public void setTabs(List<Contenido> tabs) {
         this.tabs = tabs;
     }
-    
+
+    public boolean isEncurso() {
+        return encurso;
+    }
+
+    public void setEncurso(boolean encurso) {
+        this.encurso = encurso;
+    }
+    public void prueba(){
+        System.out.println("cambiando");
+    }
 }
