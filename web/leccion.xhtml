@@ -13,13 +13,10 @@
                 <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}" action="alumno"></p:menuitem>
                 <p:menuitem value="Cerrar Sesion" icon="ui-icon-extlink" action="#{login.cerrarSesion()}"></p:menuitem>
                 <p:menuitem value="Mostrar Progreso" icon="ui-icon-note"></p:menuitem>
-                
-                
             </p:menubar>
             
         </h:form>
-        <div style="padding-left: 50px; padding-right: 20px; padding-top: 50px;">
-            <h3 style="margin-top: 0">Leccion</h3>
+        <div style="padding-left: 50px; padding-right: 20px; ">
             <p:tabView value="#{leccionBean.obtenerTabs(param['nombreLeccion'])}"  var="tab">
                 <p:tab title="#{tab.nombre}">
                     <h:panelGrid columns="1" cellpadding="5">

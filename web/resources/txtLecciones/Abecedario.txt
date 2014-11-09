@@ -27,9 +27,9 @@ X
 Y
 Z
 imagenes
-letraA.jpg
-letraB.jpg
-letraC.jpg
+letraA.png
+letraB.png
+letraC.png
 letraD.jpg
 letraE.jpg
 letraF.jpg
