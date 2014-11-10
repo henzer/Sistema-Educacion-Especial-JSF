@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
  *
  * @author DiegoRenato
  */
-@ManagedBean 
+@ManagedBean
 @ViewScoped
 public class LeccionBean implements Serializable{
     //direccion de la leccion

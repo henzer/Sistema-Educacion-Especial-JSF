@@ -26,9 +26,9 @@ import org.primefaces.model.DefaultDashboardModel;
  *
  * @author Cesar Luis
  */
-@ManagedBean
+@ManagedBean(name = "ejercicioOrdenar")
 @ViewScoped
-public class DashboardView implements Serializable{
+public class EjercicioOrdenar implements Serializable{
     private DashboardModel model, auxModel;
     private ArrayList<String> titles;
     private ArrayList<String> objects;
