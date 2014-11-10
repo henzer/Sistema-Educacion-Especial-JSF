@@ -51,7 +51,21 @@ and open the template in the editor.
             </div>
 
             <div style="position: relative; float: left; width: 80%; height: 100%;">
+                <h:form>
+                    <p:growl id="growl" showDetail="true" />
 
+                    <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+                        <p:chart type="pie" model="#{chartView.pieModel1}" style="width:400px;height:300px">
+                            <p:ajax event="itemSelect" listener="#{chartView.itemSelect}" update="growl" />
+                        </p:chart>
+
+                        <p:chart type="bar" model="#{chartView.barModel}" style="width:400px;height:300px">
+                            <p:ajax event="itemSelect" listener="#{chartView.itemSelect}" update="growl" />
+                        </p:chart>  
+                    </h:panelGrid>
+
+                </h:form>
+                
             </div>
             
         </div>
