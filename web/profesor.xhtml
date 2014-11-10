@@ -12,7 +12,7 @@ and open the template in the editor.
     
     <h:head>
         <title>#{usuarioActual.nombreUsuario}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=1024px, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <h:form>
@@ -51,20 +51,18 @@ and open the template in the editor.
             </div>
 
             <div style="position: relative; float: left; width: 80%; height: 100%;">
-                <h:form>
-                    <p:growl id="growl" showDetail="true" />
+                <p:accordionPanel value="#{ctrlAlumno.lista}" var="unidad" multiple="true">
+                    <p:tab title="Resultados - #{unidad.nombreUnidad}">
+                        <h:form>
+                            <p:growl id="growl" showDetail="true" />
+                            <p:chart type="bar" model="#{graficaBarraAlumnos.getBarModel(unidad.idUnidad)}" style="height:400px" >
+                                <p:ajax event="itemSelect" listener="#{graficaBarraAlumnos.itemSelect}" update="growl"/>
+                            </p:chart>  
 
-                    <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
-                        <p:chart type="pie" model="#{chartView.pieModel1}" style="width:400px;height:300px">
-                            <p:ajax event="itemSelect" listener="#{chartView.itemSelect}" update="growl" />
-                        </p:chart>
-
-                        <p:chart type="bar" model="#{chartView.barModel}" style="width:400px;height:300px">
-                            <p:ajax event="itemSelect" listener="#{chartView.itemSelect}" update="growl" />
-                        </p:chart>  
-                    </h:panelGrid>
-
-                </h:form>
+                        </h:form>
+                    </p:tab>
+                </p:accordionPanel>
+                
                 
             </div>
             
