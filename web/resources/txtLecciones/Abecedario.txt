@@ -13,7 +13,7 @@ K
 L
 M
 N
-Ñ
+N2
 O
 P
 Q
@@ -27,9 +27,9 @@ X
 Y
 Z
 imagenes
-letraA.png
-letraB.png
-letraC.png
+letraA.jpg
+letraB.jpg
+letraC.jpg
 letraD.jpg
 letraE.jpg
 letraF.jpg
@@ -41,7 +41,7 @@ letraK.jpg
 letraL.jpg
 letraM.jpg
 letraN.jpg
-letraÑ.jpg
+letraN2.jpg
 letraO.jpg
 letraP.jpg
 letraQ.jpg
@@ -69,7 +69,7 @@ letraK.mp3
 letraL.mp3
 letraM.mp3
 letraN.mp3
-letraÑ.mp3
+letraN2.mp3
 letraO.mp3
 letraP.mp3
 letraQ.mp3

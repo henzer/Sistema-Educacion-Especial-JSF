@@ -23,7 +23,7 @@ import modelos.Leccion;
 import modelos.Unidad;
 
 @ManagedBean (name="ctrlAlumno")
-@SessionScoped
+@ViewScoped
 
 public class ControlInterfazAlumno implements Serializable {
     private ControlUnidad ctrlUnidad;
@@ -44,7 +44,8 @@ public class ControlInterfazAlumno implements Serializable {
         this.lista = lista;
     }
     
-    public String irLeccion(Leccion leccion){
+    public String irLeccion(Leccion leccion){        
+        System.out.println("Hola putos.....");
         return "leccion?idLeccion=" + leccion.getIdLeccion() + "&nombreLeccion="+leccion.getNombreLeccion()+"faces-redirect=true";
     }
     
