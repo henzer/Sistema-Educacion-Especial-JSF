@@ -65,11 +65,11 @@ public class LeccionBean implements Serializable{
             }
         } 
         catch (Exception e) {
-            e.printStackTrace();
-	} 
+            e.printStackTrace();            
+	}
         for (int i=0;i<nombres.size();i++){
             tabs.add(new Contenido(nombres.get(i),sonidos.get(i),imagenes.get(i)));
-        }
+        }        
     }
 
     public List<Contenido> getTabs() {

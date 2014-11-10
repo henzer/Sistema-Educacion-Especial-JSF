@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Ejercicio Ordenar Objetos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: greenyellow">
+        <div style="padding: 20px; height: 500px;">
+            <h:form id="form1" style=" padding: 25px 150px; height: 80%;">
+                <p:growl id="msgs" showDetail="true"/>
+                                
+                <p:dashboard id="board" model="#{dashboardView.model}" style="margin: auto">
+
+                    <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="board"/>
+                    
+                    <p:panel id="columna1" style="width: 300px" collapsed="true"></p:panel>                                                                                
+                    <p:panel id="#{dashboardView.objects.get(0)}" header="#{dashboardView.titles.get(0)}" style=" text-align: center">
+                        <p:graphicImage id="imagen1" value="resources/images/#{dashboardView.objects.get(0)}.jpg"/>
+                        <!--<h:outputText value="Sports Content" />-->
+                    </p:panel>
+
+                    <p:panel id="columna2" style="width: 300px" collapsed="true"></p:panel>
+                    <p:panel id="#{dashboardView.objects.get(1)}" header="#{dashboardView.titles.get(1)}" style=" text-align: center">
+                        <p:graphicImage id="imagen2" value="resources/images/#{dashboardView.objects.get(1)}.jpg"/>
+                    </p:panel>
+
+                    <p:panel id="columna3" style="width: 300px" collapsed="true"></p:panel>
+                    <p:panel id="#{dashboardView.objects.get(2)}" header="#{dashboardView.titles.get(2)}" style=" text-align: center">
+                        <p:graphicImage id="imagen3" value="resources/images/#{dashboardView.objects.get(2)}.jpg"/>
+                    </p:panel>
+                    
+                </p:dashboard>               
+            
+            </h:form>
+            
+            <p:separator></p:separator>
+            <h:form>                
+                <p:panel style="width: 335px; margin:0 auto;">
+                    <p:commandButton value="Calificar" actionListener="#{dashboardView.calificarEjercicio()}" update=":form1:msgs" style="width: 300px;"/>
+                </p:panel>                
+            </h:form>
+            
+            <script>
+                
+            </script>
+            
+        </div>
+    </h:body>
+</html>

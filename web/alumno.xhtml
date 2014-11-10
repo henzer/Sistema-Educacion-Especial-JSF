@@ -50,8 +50,17 @@ and open the template in the editor.
                     <p:tab title="Unidad - #{unidad.nombreUnidad}">
                         <h:panelGrid columns="2" cellpadding="5">
                             <ui:repeat value="#{unidad.lecciones}" var="leccion">
-                                <p:commandButton value="#{leccion.nombreLeccion}" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-star"></p:commandButton>
-                                <p:commandButton value="Actividades" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-pencil"></p:commandButton>
+                                <p:commandButton value="#{leccion.nombreLeccion}" action="#{ctrlAlumno.irLeccion(leccion)}" icon="ui-icon-star"></p:commandButton>                                
+                                <!--
+                                <p:commandButton value="Actividades" action="actividades?faces-redirect=true" icon="ui-icon-pencil"></p:commandButton>
+                                -->
+                                    <br></br>
+                                    <ui:repeat value="#{leccion.ejercicios}" var="ejercicio">
+                                        <h:link style=""> #{ejercicio.nombreEjercicio}</h:link>
+                                        <br></br>
+                                    </ui:repeat>
+                                
+                                                                
                                 <p:separator></p:separator>
                             </ui:repeat>
                                                

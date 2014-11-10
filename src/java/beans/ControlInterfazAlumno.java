@@ -23,7 +23,7 @@ import modelos.Leccion;
 import modelos.Unidad;
 
 @ManagedBean (name="ctrlAlumno")
-@RequestScoped
+@SessionScoped
 
 public class ControlInterfazAlumno implements Serializable {
     private ControlUnidad ctrlUnidad;

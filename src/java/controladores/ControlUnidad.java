@@ -15,8 +15,7 @@ public class ControlUnidad {
         ControlLeccion ctrlLeccion = new ControlLeccion();
         try{
             while(rs.next()){
-                unidad = new Unidad(rs.getInt("idUnidad"), rs.getString("nombreUnidad"), rs.getInt("limite"));
-                
+                unidad = new Unidad(rs.getInt("idUnidad"), rs.getString("nombreUnidad"), rs.getInt("limite"));                
                 resultado.add(unidad);
             }
         }catch(SQLException e){

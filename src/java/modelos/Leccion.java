@@ -1,11 +1,14 @@
 package modelos;
 
+import java.util.ArrayList;
+
 public class Leccion {
     private int idLeccion;
     private int idUnidad;
     private String nombreUnidad; 
     private String nombreLeccion;
     private String archivo;
+    private ArrayList<Ejercicio> ejercicios;
 
     public Leccion() {
     }
@@ -16,6 +19,7 @@ public class Leccion {
         this.nombreUnidad = nombreUnidad;
         this.nombreLeccion = nombreLeccion;
         this.archivo = archivo;
+        ejercicios = new ArrayList();
     }
 
     public int getIdLeccion() {
@@ -57,6 +61,15 @@ public class Leccion {
     public void setArchivo(String archivo) {
         this.archivo = archivo;
     }
+
+    public ArrayList<Ejercicio> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(ArrayList<Ejercicio> ejercicios) {
+        this.ejercicios = ejercicios;
+    }    
+    
 
     @Override
     public String toString() {

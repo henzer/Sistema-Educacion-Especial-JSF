@@ -59,7 +59,7 @@ public class Login implements Serializable{
                     return "index";
                 }
                 miSesion.setAttribute("profesorActual", p);
-                return "profesor";
+                return "profesor?faces-redirect=true";
             }else{
                 ControlAlumno ctlAlumno = new ControlAlumno();
                 System.out.println("idUsuario: " + actual.getIdUsuario());
@@ -72,7 +72,7 @@ public class Login implements Serializable{
                     return "index";
                 }
                 miSesion.setAttribute("alumnoActual", a);
-                return "alumno";
+                return "alumno?faces-redirect=true";
             }
         }else{
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incorrecto", "Credenciales incorrectas");
