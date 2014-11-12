@@ -2,10 +2,13 @@ package beans;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -30,16 +33,20 @@ public class EjercicioImagenes implements Serializable {
     private String imagen1, imagen2;
     private String imagenCorrecta;
     private String sonido;
-    
+    private String archivo;
+    private int cantidadCorrectas;
+    private int cantidadEjercicios;
             
     @PostConstruct
     public void Init(){
+        System.out.println("Se construyó otra vez");
         nombres = new ArrayList();
         imagenes = new ArrayList();
         sonidos = new ArrayList();
     }
     
-    public void cargarImagenesActuales(String archivo){
+    public void cargarImagenesActuales(){
+        System.out.println("Archivo: " + archivo);
         armarListas(archivo);
         int index1, index2;
         index1 =  (int)Math.floor(Math.random()*(sonidos.size()));
@@ -63,6 +70,39 @@ public class EjercicioImagenes implements Serializable {
         }
     }
     
+    public void validarEleccion(String eleccion){
+        if(eleccion.equals(imagenCorrecta)){
+            cantidadCorrectas++;
+        }
+        System.out.println("Correctas: " + cantidadCorrectas);
+        cantidadEjercicios++;
+        if(cantidadEjercicios>=10){
+            terminarLeccion();
+        }
+        cargarImagenesActuales();
+    }
+    
+    public void terminarLeccion(){
+        try {
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect(context.getRequestContextPath() + "/faces/alumno.xhtml?faces-redirect=true");
+        } catch (IOException ex) {
+            System.out.println("Ocurrio un error en EjercicioImagenes");
+        }
+    }
+    
+    public void handleComplete(){
+        System.out.println("Leccion terminada");
+        FacesMessage message = new FacesMessage();
+        message.setSeverity(FacesMessage.SEVERITY_INFO);
+        message.setSummary("Calificacion Ejercicio:");
+        message.setDetail("Correcto..! Buen trabajo.");
+        addMessage(message);
+    }
+    
+    private void addMessage(FacesMessage message) {
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     
     public void armarListas(String archivo){
         ExternalContext extContext=FacesContext.getCurrentInstance().getExternalContext();
@@ -127,4 +167,30 @@ public class EjercicioImagenes implements Serializable {
     public void setSonido(String sonido) {
         this.sonido = sonido;
     }
+
+    public String getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
+    }
+
+    public int getCantidadCorrectas() {
+        return cantidadCorrectas;
+    }
+
+    public void setCantidadCorrectas(int cantidadCorrectas) {
+        this.cantidadCorrectas = cantidadCorrectas;
+    }
+
+    public int getCantidadEjercicios() {
+        return cantidadEjercicios;
+    }
+
+    public void setCantidadEjercicios(int cantidadEjercicios) {
+        this.cantidadEjercicios = cantidadEjercicios;
+    }
+    
+    
 }

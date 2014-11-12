@@ -63,7 +63,7 @@ public class Ejercicio {
         else if (nombreEjercicio.equals("Orden"))
             return "ejercicioOrdenar";
         else
-            return "ejercicioSonido";
+            return "ejercicioImagenes";
     }
     
     

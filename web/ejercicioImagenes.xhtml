@@ -80,18 +80,20 @@
                 return {playclip:function(){throw new Error('Su navegador no soporta audio HTML5')}};
                 }
             }
-
+            
+            function getParametros(name){
+              name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+              var regexS = "[\\?&]"+name+"=([^&#]*)";
+              var regex = new RegExp( regexS );
+              var results = regex.exec( window.location.href );
+              if( results === null )
+                return null;
+              else
+                return results[1];
+            }
+            
             //Inicializar sonidos
             var hover1 = createsoundbite('resources/practica/tick.mp3');
-
-            //Nótese que se pueden añadir ficheros con otras extensiones para mayor compatibilidad
-            var dog = createsoundbite('resources/practica/dog.mp3');
-            var horse = createsoundbite('resources/practica/horse.mp3');
-            var bird = createsoundbite('resources/practica/bird.mp3');
-            
-            var piano = createsoundbite('resources/practica/piano.mp3');
-            var guitar = createsoundbite('resources/practica/guitar.mp3');
-            var drum = createsoundbite('resources/practica/drum.mp3');
         //]]>
         </script>
     </h:head>
@@ -105,19 +107,39 @@
         </h:form>
         
         <div style="padding-left: 50px; padding-right: 20px; padding-top: 50px;">
-            <h3 class="post-title">Practicando se aprende...</h3>
-            <h5 class="sub-title">Intenta hacer clic sobre cada uno de los animales</h5>
-            <div style="width: 1000px; margin: 0 auto;">
-            <img src="resources/practica/dog.png" alt="Carro" height="300" width="300" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" onclick="dog.playclip()"/>
-            <img src="resources/practica/horse.png" alt="Caballo" height="300" width="300" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" onclick="horse.playclip()"/>
-            <img src="resources/practica/bird.png" alt="Pajaro" height="300" width="300" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" onclick="bird.playclip()"/>
+            <h:outputText value="#{param['nombre']}" />
+            <f:metadata>
+                <f:viewParam name="nombre" value="#{ejercicioImagenes.archivo}" />
+                <f:viewAction action="#{ejercicioImagenes.cargarImagenesActuales}" />
+            </f:metadata>
+            
+            <h3 class="post-title">Ejercicio de Asosiación de Imagenes</h3>
+            <h5 class="sub-title">Elige la imagen correcta</h5>
+            
+            <div style="width: 810px; margin: 0 auto;">
+                <audio controls="true" autoplay="true" src="resources/sonidos/#{ejercicioImagenes.sonido}" style="width: 100%;"></audio>
             </div>
-            <h5 class="sub-title">Ahora intenta hacer clic sobre estos instrumentos</h5>
-            <div style="width: 1000px; margin: 0 auto;">
-            <img src="resources/practica/piano.png" alt="Piano" height="300" width="300" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" onclick="piano.playclip()"/>
-            <img src="resources/practica/guitar.png" alt="Guitarra" height="300" width="300" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" onclick="guitar.playclip()"/>
-            <img src="resources/practica/drum.png" alt="Tambor" height="300" width="300" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" onclick="drum.playclip()"/>
-            </div>  
+            <div style="width: 810px; margin: 0 auto;">
+                <h:form>
+                    
+                    <h:commandLink actionListener="#{ejercicioImagenes.validarEleccion(ejercicioImagenes.imagen1)}">
+                        <h:graphicImage value="resources/images/#{ejercicioImagenes.imagen1}" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" style="width: 400px;"/>
+                    </h:commandLink>
+
+                    <h:commandLink actionListener="#{ejercicioImagenes.validarEleccion(ejercicioImagenes.imagen2)}" >
+                        <h:graphicImage value="resources/images/#{ejercicioImagenes.imagen2}" onmouseover="hover1.playclip(); mouseIn(this)" onmouseout="mouseOut(this)" style="width: 400px;"/>
+                    </h:commandLink>     
+                </h:form>         
+            </div>
+            <di>
+                <p:progressBar value="#{ejercicioImagenes.cantidadEjercicios*10}" ajax="true"> 
+                    <p:ajax event="complete" listener="#{ejercicioImagenes.handleComplete}"/> 
+                </p:progressBar>
+                <p:growl id="messages" />
+            </di>
+            <div>
+                <p:commandButton value="Start" type="button" action="alumno" widgetVar="startButton2" disabled="true"/>
+            </div>
         </div>
         
     </h:body>
