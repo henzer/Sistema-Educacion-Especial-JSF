@@ -13,7 +13,8 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>#{usuarioActual.nombreUsuario}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=100%, initial-scale=1.0"/>
+        <script type="text/css" src="src/button.css"></script>
     </h:head>
     <h:body>
         <h:form>
@@ -24,7 +25,7 @@ and open the template in the editor.
             </p:menubar>
             
         </h:form>
-        <div style="padding-left: 20px; padding-right: 20px; padding-top: 20px;">
+        <div style="padding: 20px;">
             <div style="position: relative; float: left; width: 20%; height: 100%; min-width: 200px;">
                 <p:panelGrid columns="2">
                     <f:facet name="header">
@@ -45,7 +46,7 @@ and open the template in the editor.
                 </p:panelGrid>
             </div>
 
-            <div style="position: relative; float: left; width: 80%; height: 100%;">
+            <div style="position: relative; float: left; width: 40%; height: 100%; padding: 20px;">
                 <p:accordionPanel value="#{ctrlAlumno.lista}" var="unidad" multiple="true">
                     <p:tab title="Unidad - #{unidad.nombreUnidad}">
                         <h:panelGrid columns="2" cellpadding="5">
@@ -68,7 +69,18 @@ and open the template in the editor.
                     </p:tab>
                 </p:accordionPanel>
             </div>
-            
+            <div style="position: relative; float: left;width: 30%">
+                <p:panelGrid columns="1" style="width: 100%;">
+                    <f:facet name="header">
+                        <h:outputText value="Progreso Personal"/>
+                    </f:facet>
+                    <p:chart type="bar" model="#{graficaBarraPersonal.barModel}" ></p:chart>
+                    <p:separator />
+                    <p:link class="button-blue" outcome="practica?faces-redirect=true" value="Practica"> </p:link>
+                    <audio controls="true" autoplay="true" src="resources/sonidos/letraA.mp3" ></audio>
+                </p:panelGrid>
+                
+            </div>
         </div>
         
     </h:body>
