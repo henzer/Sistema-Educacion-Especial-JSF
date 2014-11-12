@@ -59,7 +59,14 @@ public class Ejercicio implements Serializable{
         this.estado = estado;
     }
     
-    
+    public String tipoEjercicio(){
+        if (nombreEjercicio.equals("Imagenes"))
+            return "ejercicioAsociacion1";
+        else if (nombreEjercicio.equals("Orden"))
+            return "ejercicioOrdenar";
+        else
+            return "ejercicioSonido";
+    }
     
     
 }

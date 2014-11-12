@@ -30,16 +30,16 @@ import org.primefaces.event.DragDropEvent;
 @ViewScoped
 public class EjercicioAsociacion1 implements Serializable {
     
-    List<String> imagesName;
-    List<String> imagesIdent;    
-    List<String> droppedImages;    
-    List<String> result;
+    private List<String> imagesName;
+    private List<String> imagesIdent;    
+    private List<String> droppedImages;    
+    private List<String> result;
     private int auxNext = -1;    
     
     
     private String dirLeccion="//resources//txtLecciones//";   
     private List<String> nombres;
-    private List<String> imagenes;
+    private List<String> imagenes;    
     
     @PostConstruct
     public void Init(){
@@ -48,7 +48,7 @@ public class EjercicioAsociacion1 implements Serializable {
         droppedImages = new ArrayList();        
         result = new ArrayList();
         nombres = new ArrayList();
-        imagenes = new ArrayList();       
+        imagenes = new ArrayList();
                 
         this.armarListas("Abecedario");
         System.out.println("Imagenes encontrados: " + imagenes.toString());

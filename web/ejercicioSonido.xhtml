@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Ejercicio de Asociacion de Sonidos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    
+    <h:body>
+        
+        <script>
+            function obtenerImagenSeleccionada(idObjeto){
+                if (idObjeto.contains("imagen1"))                    
+                    alert("Click en Imagen 1..");
+                else if(idObjeto.contains("imagen2"))
+                    alert("Click en Imagen 1..");
+            }
+            
+        </script>
+        
+        <h:form id="formEjercicio" style="margin:auto;">
+            <p:panel header="Ejercicio Asociacion de Sonidos" style="width: auto; text-align: center">
+                <p:growl id="msgs" showDetail="true"/>                                
+                
+                <h:panelGrid id="mediaPanel">
+                    <p:media id="media" value="/resources/sonidos/#{ejercicioSonido.dirSonido}" player="quicktime" style="size: 0px 0px">
+                      <f:param name="autoPlay" value="true" />                      
+                    </p:media>
+                </h:panelGrid>
+                
+                <center>
+                    <table>
+                        <tr>
+                            <td>
+                                <h:commandButton id="boton1" image="resources/images/#{ejercicioSonido.dirImagen1}" action="#{ejercicioSonido.imagenSeleccionada('Imagen1')}" style="margin: 10px 50px; size: 500px 375px; ">
+                                    <f:ajax execute="@this" render="formEjercicio" />
+                                </h:commandButton>
+                            </td>                            
+                            <td>
+                                <h:commandButton id="boton2" image="resources/images/#{ejercicioSonido.dirImagen2}" action="#{ejercicioSonido.imagenSeleccionada('Imagen2')}" style="margin: 10px 50px; size: 500px 375; ">
+                                    <f:ajax execute="@this" render="formEjercicio" />
+                                </h:commandButton>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <center>
+                                <td colspan="2">
+                                    <p:commandButton value="Reproducir de Nuevo" update="mediaPanel" style="al"/>
+                                </td>                                
+                            </center>
+                        </tr>                       <!-- Hola -->
+                        
+                        
+                    </table>
+                    <p:separator></p:separator>
+                    <p:progressBar value="50" labelTemplate="{value}%" displayOnly="true"/>
+                    
+                </center>
+            </p:panel>
+            
+            <p:separator></p:separator>
+
+        </h:form>
+
+
+    </h:body>
+</html>

@@ -1,0 +1,81 @@
+/**trasition**/
+.k-effect li:hover span.mask {
+    transition: all 0.3s ease-in-out 0.25s;
+    -moz-transition: all 0.3s ease-in-out 0.25s;
+    -webkit-transition: all 0.3s ease-in-out 0.25s;
+    -o-transition: all 0.3s ease-in-out 0.25s;
+}
+
+span.mask, ul.k-effect li, ul.k-effect img {
+    transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+}
+/*reset*/
+ul.k-effect {list-style: none outside none;margin: 0;padding: 0;}
+ul.k-effect li {list-style: none outside none;}
+ul.k-effect img {border: 0 none;opacity: 1;}
+ul.k-effect li:hover img {opacity: 0.7;}
+
+ul.k-effect li {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.9);
+    display: inline-block;
+    margin: 10px 8px;
+    padding: 5px;
+    position: relative;
+    top: 0;
+}
+ul.k-effect li > a {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+ul.k-effect span.mask {
+    background-color: rgba(0, 0, 0, 0.8);
+    background-image: url("http://lh4.googleusercontent.com/-WQnshglkK3M/UKJ5d_syX8I/AAAAAAAADuE/0fXdBOvpYmg/s1600/full.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/**Efecto Top**/
+ul.k-effect.top li:hover {box-shadow: 0 21px 8px -15px rgba(0, 0, 0, 0.5);top: -5px;}
+ul.k-effect.top span.mask {height: 70px;top: -80px;width: 280px;}
+ul.k-effect.top li:hover span.mask {top: 0;}
+
+/**Efecto bottom**/
+ul.k-effect.bottom li:hover {box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0);top: 5px;}
+ul.k-effect.bottom span.mask {height: 160px;width: 280px;opacity: 0; top: 0;}
+ul.k-effect.bottom li:hover span.mask {opacity: 1;}
+
+/**Efecto left**/
+ul.k-effect.left li {left: 0;}
+ul.k-effect.left li:hover {left: 5px;}
+ul.k-effect.left span.mask {height: 160px;top: 0;width: 0;}
+ul.k-effect.left li:hover span.mask {width: 80px;}
+
+/**Efecto circle**/
+ul.k-effect.circle span.mask {border-radius: 100%;bottom: 0;height: 60px;margin: auto;right: 0;top: -40px;width: 60px;opacity: 0;}
+ul.k-effect.circle li:hover span.mask {top: 0;opacity: 1;}
+ul.k-effect.circle li:hover img {transform: scale(1.1);-moz-transform: scale(1.1);-ms-transform: scale(1.1);-webkit-transform: scale(1.1);-o-transform: scale(1.1);}
+
+/**Efecto rotate**/
+ul.k-effect.rotate span.mask {height: 60px;left: 0;right: 0;width: 60px;margin: auto;bottom: 0;border-radius: 100%;transform: rotate(-120deg);-moz-transform: rotate(-120deg);-ms-transform: rotate(-120deg);-o-transform: rotate(-120deg);-webkit-transform: rotate(-120deg);top: 40px;opacity: 0;}
+ul.k-effect.rotate li:hover span.mask {top: 0;left: 0;opacity: 1;transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);-o-transform: rotate(0deg);-webkit-transform: rotate(0deg);}
+ul.k-effect.rotate li img {transform: scale(1.1);-moz-transform: scale(1.1);-ms-transform: scale(1.1);-o-transform: scale(1.1);-webkit-transform: scale(1.1);}
+ul.k-effect.rotate li:hover img {transform: scale(1);-moz-transform: scale(1);-ms-transform: scale(1);-o-transform: scale(1);-webkit-transform: scale(1);}
+
+/****Configurar****/
+/**tamaño a cortar de la imagen*/
+ul.k-effect li > a {
+    height: 160px; /*ancho*/
+    width: 280px; /*alto*/
+}
+
+/**tamaño maximo de la imagen [Naturalmente es recomendable que este sea al menos 20 pixeles mas grande que el corte]**/
+ul.k-effect img {max-width: 300px;}

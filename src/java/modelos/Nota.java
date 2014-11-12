@@ -1,72 +1,40 @@
 package modelos;
+public class Nota{
+    private double suma;
+    private int cantidad;
+    private int idLeccion;
 
 import java.io.Serializable;
 
 public class Nota implements Serializable{
 
-	int idAlumno;
-	int idLeccion;
-	int idUnidad;
-	String fecha;
-	double nota;
-	
-	
-	public Nota(int idAlumno, int idLeccion, int idUnidad, String fecha,
-			double nota) {
-		super();
-		this.idAlumno = idAlumno;
-		this.idLeccion = idLeccion;
-		this.idUnidad = idUnidad;
-		this.fecha = fecha;
-		this.nota = nota;
-	}
+    public Nota(double suma, int cantidad, int idLeccion) {
+        this.suma = suma;
+        this.cantidad = cantidad;
+        this.idLeccion = idLeccion;
+    }
 
-	public Nota() {
-		// TODO Auto-generated constructor stub
-	}
+    public double getSuma() {
+        return suma;
+    }
 
-	// M�todos sets y gets para los atributos
-	
-	public int getIdAlumno() {
-		return idAlumno;
-	}
+    public void setSuma(double suma) {
+        this.suma = suma;
+    }
 
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
-	}
+    public int getCantidad() {
+        return cantidad;
+    }
 
-	public int getIdLeccion() {
-		return idLeccion;
-	}
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
-	public void setIdLeccion(int idLeccion) {
-		this.idLeccion = idLeccion;
-	}
+    public int getIdLeccion() {
+        return idLeccion;
+    }
 
-	public int getIdUnidad() {
-		return idUnidad;
-	}
-
-	public void setIdUnidad(int idUnidad) {
-		this.idUnidad = idUnidad;
-	}
-
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-
-	public double getNota() {
-		return nota;
-	}
-
-	public void setNota(double nota) {
-		this.nota = nota;
-	}
-	
-	
-
+    public void setIdLeccion(int idLeccion) {
+        this.idLeccion = idLeccion;
+    }
 }
