@@ -37,7 +37,7 @@ public class GestionProfesoresBean implements Serializable {
     public void mostrarVentanaModal(){
         nuevo = new Profesor();
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("ventanaModalProfesor2.show()");
+        context.execute("PF('ventanaModalProfesor2').show()");
     }
     
     public void add() {
@@ -51,7 +51,7 @@ public class GestionProfesoresBean implements Serializable {
         }
         nuevo = new Profesor();
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("ventanaModalProfesor2.hide()");
+        context.execute("PF('ventanaModalProfesor2').hide()");
         
     }
 
@@ -59,7 +59,7 @@ public class GestionProfesoresBean implements Serializable {
         this.profesor = profesor;
         edit = true;
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("ventanaModalProfesor1.show()");
+        context.execute("PF('ventanaModalProfesor1').show()");
     }
 
     public void save() {
@@ -72,7 +72,7 @@ public class GestionProfesoresBean implements Serializable {
         profesor = new Profesor();
         edit = false;
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("ventanaModalProfesor1.hide()");
+        context.execute("PF('ventanaModalProfesor1').hide()");
         
     }
 

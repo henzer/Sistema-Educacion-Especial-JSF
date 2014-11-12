@@ -4,8 +4,9 @@ public class Nota{
     private int cantidad;
     private int idLeccion;
 
-    public Nota() {
-    }
+import java.io.Serializable;
+
+public class Nota implements Serializable{
 
     public Nota(double suma, int cantidad, int idLeccion) {
         this.suma = suma;

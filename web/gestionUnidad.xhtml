@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:head>
+        <title>Gestion de Unidades</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:menubar>
+                <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}"></p:menuitem>
+                <p:menuitem value="Cerrar Sesion" icon="ui-icon-extlink" action="#{login.cerrarSesion()}"></p:menuitem>
+                <p:submenu label="Gestionar" icon="ui-icon-pencil">
+                    <p:menuitem value="Gestionar Alumnos" icon="ui-icon-person" action="gestionAlumno.xhtml"></p:menuitem>
+                    <p:separator></p:separator>
+                    <p:menuitem value="Gestionar Lecciones" icon="ui-icon-note" action="gestionUnidad.xhtml"></p:menuitem>
+                </p:submenu>
+            </p:menubar>
+            
+        </h:form>
+        
+        <div style="padding-left: 30px; padding-right: 30px; padding-top: 20px;">
+            <div style="position: relative; float: left; width: 20%; height: 100%; min-width: 200px;">
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <p:graphicImage value="imagenesUsuario/#{profesorActual.foto}" style="width: 100%;"/>
+                    </f:facet>
+
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value="#{profesorActual.nombreProfesor}" />
+
+                    <h:outputText value="Apellido:" />
+                    <h:outputText value="#{profesorActual.apellidoProfesor}" />
+
+                    <h:outputText value="Telefono:" />
+                    <h:outputText value="#{profesorActual.telefono1}" />
+
+                    <h:outputText value="Descripcion:" />
+                    <h:outputText value="#{profesorActual.descripcion}" />
+                </p:panelGrid>
+            </div>
+
+            <div style="position: relative; float: left; width: 60%; height: 100%; margin-left: 20px;">
+                <span>Unidades</span>
+                <h:form id="formAlumnos" enctype="multipart/form-data">
+                    <p:growl id="mensajes" showDetail="true" />
+                    <p:dataTable value="#{gestionun.list}" var="unidad" id="tablaPrueba">
+                        <p:column headerText="ID"><h:outputText value="#{unidad.idUnidad}"/></p:column>
+                        <p:column headerText="Nombre Unidad"><h:outputText value="#{unidad.nombreUnidad}"/></p:column>
+                        <p:column headerText="limite"><h:outputText value="#{unidad.limite}"/></p:column>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-pencil" actionListener="#{gestionun.edit(unidad)}" update=":formAlumnos:ventanaModalModificar"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-trash" actionListener="#{gestionun.delete(unidad)}" update="tablaPrueba :formAlumnos:mensajes"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Lecciones" action="#{gestionun.defUnidad(unidad)}" />
+                        </p:column>
+                    </p:dataTable>
+
+
+                    <p:dialog id="ventanaModalModificar" header="Modificar Unidad" widgetVar="ventanaModalUnidad1" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="detalleAlumnoModificar" style="text-align:center;">
+                            <p:panelGrid  columns="2" rendered="#{not empty gestionun.unidad}" columnClasses="label,value">
+                                <h:outputText value="Nombre Unidad:" />
+                                <h:inputText value="#{gestionun.unidad.nombreUnidad}" />
+                                <h:outputText value="Limite:" />
+                                <h:inputText value="#{gestionun.unidad.limite}" />
+                                <p:commandButton process="@this" value="Guardar" actionListener="#{gestionun.save()}" update="tablaPrueba mensajes" />
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+
+                    <p:dialog id="ventanaModalAgregar" header="Nueva Unidad" widgetVar="ventanaModalUnidad2" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="detalleAlumnoAgregar" style="text-align:center;">
+                            <p:panelGrid  columns="2" columnClasses="label,value" style="border:none;">
+                                <h:outputText value="Nombre Unidad:" />
+                                <h:inputText value="#{gestionun.nuevo.nombreUnidad}" />
+                                <h:outputText value="Limite:" />
+                                <h:inputText value="#{gestionun.nuevo.limite}" />
+                                <p:commandButton  value="Agregar" actionListener="#{gestionun.add}" update="tablaPrueba mensajes" />
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <h:form>
+                        <p:commandButton value="Agregar" actionListener="#{gestionun.mostrarVentanaModal()}" update=":formAlumnos:ventanaModalAgregar"/>
+                    </h:form>
+                </h:form>
+            </div>
+        </div>
+        
+    </h:body>
+</html>

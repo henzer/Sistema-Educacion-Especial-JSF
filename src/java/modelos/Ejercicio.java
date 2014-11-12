@@ -6,12 +6,14 @@
 
 package modelos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Cesar Luis
  */
 
-public class Ejercicio {
+public class Ejercicio implements Serializable{
     int idEjercicio;
     int idLeccion;
     String nombreEjercicio;
