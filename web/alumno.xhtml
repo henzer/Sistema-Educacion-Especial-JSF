@@ -56,7 +56,7 @@ and open the template in the editor.
                                 <div style="margin: 15px 10px">
                                     <p:fieldset legend="Ejercicios" toggleable="true" toggleSpeed="500">                                    
                                         <ui:repeat value="#{leccion.ejercicios}" var="ejercicio">                                            
-                                            <p:link outcome="#{ejercicio.tipoEjercicio()}?faces-redirect=true" value="#{ejercicio.nombreEjercicio}"> </p:link>
+                                            <p:link outcome="#{ejercicio.tipoEjercicio()}?idLeccion=#{leccion.getIdLeccion()}&faces-redirect=true" value="#{ejercicio.nombreEjercicio}"> </p:link>
                                             <br></br>
                                         </ui:repeat>
 
