@@ -1,13 +1,11 @@
 package modelos;
-public class Nota{
-    private double suma;
-    private int cantidad;
-    private int idLeccion;
 
 import java.io.Serializable;
 
 public class Nota implements Serializable{
-
+    private double suma;
+    private int cantidad;
+    private int idLeccion;
     public Nota(double suma, int cantidad, int idLeccion) {
         this.suma = suma;
         this.cantidad = cantidad;

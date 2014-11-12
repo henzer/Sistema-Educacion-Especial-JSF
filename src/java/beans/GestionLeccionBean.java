@@ -62,6 +62,7 @@ public class GestionLeccionBean {
             Leccion nueva= new Leccion(-1,actual.getIdUnidad(),actual.getNombreUnidad(),leccionN,leccionN+".txt");
             leccionN="";
             int res=nueva.agregarConRetorno();
+            System.out.println("Este es el int: " + res);
             nueva.setIdLeccion(res);
             actual.getLecciones().add(nueva);
             nLecciones.add(nueva);
