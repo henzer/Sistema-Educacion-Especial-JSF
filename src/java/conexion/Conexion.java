@@ -38,7 +38,7 @@ public class Conexion {
     	Properties propiedades = new Properties();
 		try {
 			System.out.println(getClass().getResource("cntPropiedades.properties").getFile());
-			propiedades.load(new FileInputStream("C:\\Users\\timothy\\Documents\\UNIVERSITY\\CYCLES VI\\INGENIERIA DE SOFTWARE\\Proyecto\\Sistema-Educacion-Especial-JSF\\build\\web\\WEB-INF\\classes\\conexion\\cntPropiedades.properties"));
+			propiedades.load(new FileInputStream("C:\\Users\\Estudiante\\Documents\\NetBeansProjects\\Sistema-Educacion-Especial-JSF\\src\\java\\conexion\\cntPropiedades.properties"));
                         //propiedades.load(new FileInputStream(getClass().getResource("cntPropiedades.properties").getFile()));
 			dataSource = BasicDataSourceFactory.createDataSource(propiedades);
 		}catch(FileNotFoundException error) {

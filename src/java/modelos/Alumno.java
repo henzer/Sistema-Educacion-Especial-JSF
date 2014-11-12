@@ -5,8 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import conexion.Conexion;
+import java.io.Serializable;
 
-public class Alumno {
+public class Alumno implements Serializable{
 
 	private int idAlumno;
 	private String nombreAlumno;

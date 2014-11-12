@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title> #{gestionL.iniciar(param['indexU'])} </title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:menubar>
+                <p:menuitem value ="Bienvenido: #{usuarioActual.nombreUsuario}"></p:menuitem>
+                <p:menuitem value="Cerrar Sesion" icon="ui-icon-extlink" action="#{login.cerrarSesion()}"></p:menuitem>
+                <p:submenu label="Gestionar" icon="ui-icon-pencil">
+                    <p:menuitem value="Gestionar Alumnos" icon="ui-icon-person" action="gestionAlumno.xhtml"></p:menuitem>
+                    <p:separator></p:separator>
+                    <p:menuitem value="Gestionar Lecciones" icon="ui-icon-note" action="gestionUnidad.xhtml"></p:menuitem>
+                </p:submenu>
+            </p:menubar>
+        
+        </h:form>
+        <br></br>
+        <div style="width:50%;margin-left: 20%">
+            <h:form>
+                <p:dataTable id="tablaLecciones" value="#{gestionL.actual.lecciones}" var="leccion">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{leccion.idLeccion}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{leccion.nombreLeccion}"/>
+                    </p:column>
+                    <p:column headerText="ID unidad">
+                        <h:outputText value="#{leccion.idUnidad}"/>
+                    </p:column>
+                    <p:column >
+                        <p:commandButton icon="ui-icon-trash" actionListener="#{gestionL.delete(leccion)}" update="tablaLecciones"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-pencil" actionListener="#{gestionL.editando(leccion)}" update=":formContenido"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <br></br>
+        <h:form>
+            <h:panelGrid columns="2" border="0">
+                <h:outputText value="Nombre Leccion" style="font-size: 20px"/>
+                <p:inputText value="#{gestionL.leccionN}"/>
+                <p:commandButton value="Agregar" actionListener="#{gestionL.nuevaLeccion()}" ajax="false"/>
+            </h:panelGrid>
+        </h:form>
+        </div>
+        <br></br>
+        <div style="width:50%;margin-left: 20%">
+        
+        <h:form id="formContenido" >
+            
+                <p:dataTable id="tablaContenido"  value="#{gestionL.editandoL}" var="contenido">
+                    <f:facet name="header">
+                         #{gestionL.editandoS}
+                    </f:facet>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{contenido.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Imagen">
+                        <p:graphicImage library="images" name="#{contenido.dirImagen}"/>
+                    </p:column>
+                    <p:column headerText="Sonido">
+                        <audio src="../resources/sonidos/#{contenido.dirSonido}" controls="true"></audio>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-trash" actionListener="#{gestionL.eliminar(contenido)}" update="tablaContenido"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+        <br></br>
+        <h:form id="formArchivos" enctype="multipart/form-data" style="font-family: serif; font-size: 20px" >
+            <p:growl id="messages" showDetail="true" />
+            <h:outputText value="nombre"/>
+            <p:inputText value="#{gestionL.nombre}"/>
+            <h:outputText value="imagen"/>
+            <p:fileUpload value="#{gestionL.imagen}" mode="simple" disabled="false" />
+            <h:outputText value="sonido"/>
+            <p:fileUpload value="#{gestionL.sonido}" mode="simple" disabled="false"/>
+            <p:commandButton value="Agregar" ajax="false" actionListener="#{gestionL.save}" />
+        </h:form>
+        <br></br>
+        <h:form style="margin-left: 20%">
+            <p:commandButton value="Guardar y Salir" action="#{gestionL.guardarSalir()}" ajax="false"/>
+        </h:form>
+        
+    </h:body>
+</html>
+

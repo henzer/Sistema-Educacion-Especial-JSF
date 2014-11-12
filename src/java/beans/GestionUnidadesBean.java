@@ -7,81 +7,88 @@
 package beans;
 
 import controladores.ControlAlumno;
+import controladores.ControlUnidad;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-import modelos.Alumno;
-import modelos.Profesor;
+import modelos.Leccion;
+import modelos.Unidad;
 import org.primefaces.context.RequestContext;
 
-@ManagedBean(name = "gestiona")
+@ManagedBean(name = "gestionun")
 @SessionScoped
-public class GestionAlumnosBean implements Serializable {
-
-    private List<Alumno> list;
-    private Alumno alumno = new Alumno();
-    private Alumno nuevo = new Alumno();
-    
+public class GestionUnidadesBean implements Serializable {
+    private String dirLeccion="//resources//txtLecciones//";
+    private List<Unidad> list;
+    private Unidad unidad = new Unidad();
+    private Unidad nuevo = new Unidad();
+    private Unidad tempUnidad = new Unidad();
+    private List<List<Contenido>> leccionesD;
     private boolean edit;
-    private ControlAlumno controlA;
+    private ControlUnidad controlU;
     @PostConstruct
     public void init() {
-        controlA=new ControlAlumno();
-        list = controlA.obtenerTodos();
+        controlU=new ControlUnidad();
+        list = controlU.obtenerTodas();
     }
     
     public void mostrarVentanaModal(){
-        nuevo = new Alumno();
+        nuevo = new Unidad();
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('ventanaModalAlumno2').show()");
+        context.execute("PF('ventanaModalUnidad2').show()");
     }
     
     public void add() {
-        Profesor profesor = (Profesor)((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false)).getAttribute("profesorActual");
-        nuevo.setProfesor(profesor);
         System.out.println(nuevo);
         int res=nuevo.agregarConRetorno();
         if (res !=0){
-            nuevo.setIdAlumno(res);
+            nuevo.setIdUnidad(res);
             list.add(nuevo);
             addMessage("Success", "Agregado con exito");
         }else{
             addMessage("Error", "No se puede agregar");
         }
-        nuevo = new Alumno();
+        nuevo = new Unidad();
+        
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('ventanaModalAlumno2').hide()");
+        context.execute("PF('ventanaModalUnidad2').hide()");
         
     }
-
-    public void edit(Alumno alumno) {
-        this.alumno = alumno;
+    public String defUnidad(Unidad unidad){
+        tempUnidad=unidad;
+        return "crearLeccion?indexU=" + list.indexOf(unidad)+"faces-redirect=true";
+    }
+    public void edit(Unidad unidad) {
+        this.unidad = unidad;
         edit = true;
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('ventanaModalAlumno1').show()");
+        context.execute("PF('ventanaModalUnidad1').show()");
     }
 
     public void save() {
-        if(alumno.modificar()){
+        if(unidad.modificar()){
             addMessage("Success", "Modificado con exito");
         }else{
             addMessage("Error", "Ocurrio un error");
         }
-        alumno = new Alumno();
+        unidad = new Unidad();
         edit = false;
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('ventanaModalAlumno1').hide()");
+        context.execute("PF('ventanaModalUnidad1').hide()");
         
     }
 
-    public void delete(Alumno alumno) {
-        if(alumno.eliminar()){
-            list.remove(alumno);
+    public void delete(Unidad unidad) {
+        if(unidad.eliminar()){
+            list.remove(unidad);
             addMessage("Success", "Eliminado con exito");
         }else{
             addMessage("Error", "No se puede eliminar");
@@ -89,19 +96,19 @@ public class GestionAlumnosBean implements Serializable {
         
     }
 
-    public List<Alumno> getList() {
+    public List<Unidad> getList() {
         return list;
     }
 
-    public Alumno getAlumno() {
-        return alumno;
+    public Unidad getUnidad() {
+        return unidad;
     }
 
-    public Alumno getNuevo() {
+    public Unidad getNuevo() {
         return nuevo;
     }
 
-    public void setNuevo(Alumno nuevo) {
+    public void setNuevo(Unidad nuevo) {
         this.nuevo = nuevo;
     }
 
@@ -115,5 +122,23 @@ public class GestionAlumnosBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
+    public List<List<Contenido>> getLeccionesD() {
+        return leccionesD;
+    }
 
+    public void setLeccionesD(List<List<Contenido>> leccionesD) {
+        this.leccionesD = leccionesD;
+    }
+
+    public Unidad getTempUnidad() {
+        return tempUnidad;
+    }
+
+    public void setTempUnidad(Unidad tempUnidad) {
+        this.tempUnidad = tempUnidad;
+    }
+    public void eliminate(Leccion leccion, Contenido contenido){
+        leccion.eliminar(contenido);
+    }
+    
 }

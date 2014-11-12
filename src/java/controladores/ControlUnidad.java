@@ -1,12 +1,13 @@
 package controladores;
 
 import conexion.Conexion;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelos.Unidad;
 
-public class ControlUnidad {
+public class ControlUnidad implements Serializable{
     
     public ArrayList<Unidad> obtenerTodas(){
         ResultSet rs= Conexion.getInstancia().hacerConsulta("SELECT * FROM unidad");

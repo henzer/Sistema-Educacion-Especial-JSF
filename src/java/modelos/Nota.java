@@ -1,6 +1,8 @@
 package modelos;
 
-public class Nota {
+import java.io.Serializable;
+
+public class Nota implements Serializable{
 
 	int idAlumno;
 	int idLeccion;
@@ -23,7 +25,7 @@ public class Nota {
 		// TODO Auto-generated constructor stub
 	}
 
-	// Métodos sets y gets para los atributos
+	// Mï¿½todos sets y gets para los atributos
 	
 	public int getIdAlumno() {
 		return idAlumno;

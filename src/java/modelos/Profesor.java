@@ -3,8 +3,9 @@ package modelos;
 import java.util.ArrayList;
 
 import conexion.Conexion;
+import java.io.Serializable;
 
-public class Profesor {
+public class Profesor implements Serializable{
 	
 	int idProfesor;
 	String nombreProfesor;

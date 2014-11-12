@@ -4,8 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import conexion.Conexion;
+import java.io.Serializable;
 
-public class Usuario {
+public class Usuario implements Serializable{
 	
 	int idUsuario;
 	String nombreUsuario;
